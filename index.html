@@ -1,14 +1,68 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Web Components</title>
-  <script src="./index.js"></script>
+  <script src="./index.js" defer></script>
 </head>
 <h1>Web Components Deep Dive</h1>
+
+<h2>Autonomous Custom element: popup-info</h2>
 <!-- autonomous custom elements are standalone and don't inherit from any built
-in element -->
-<autonomous-custom-element>This text is inside an autonomous custom element.</autonomous-custom-element>
+in element. As you can see, the following `popup-info` element is defined once
+in index.js and reused multiple times.-->
+<popup-info img-src="./img/tooltip.png" data-text="An autonomous custom element."></popup-info>
+<popup-info img-src="./img/tooltip.png" data-text="A second autonomous custom
+element, wow." /></popup-info>
+<popup-info img-src="./img/tooltip.png" data-text="A third autonomous custom
+element, no extra code needed." /></popup-info>
+
+<h2>Custom built-in element: expanding-list</h2>
+<!-- The following is the declaration of a custom built-in element that was
+created in index.js. This is achieved by using the `is` attribute, which
+specifies the name of the custom element -->
+<ul is="expanding-list">
+  <li>UK
+      <ul>
+          <li>Yorkshire
+              <ul>
+                  <li>Leeds
+                      <ul>
+                          <li>Train station</li>
+                          <li>Town hall</li>
+                          <li>Headrow</li>
+                      </ul>
+                  </li>
+                  <li>Bradford</li>
+                  <li>Hull</li>
+              </ul>
+          </li>
+      </ul>
+  </li>
+  <li>USA
+      <ul>
+          <li>California
+              <ul>
+                  <li>Los Angeles</li>
+                  <li>San Francisco</li>
+                  <li>Berkeley</li>
+              </ul>
+          </li>
+          <li>Nevada</li>
+          <li>Oregon</li>
+      </ul>
+  </li>
+</ul>
+
+<ul>
+  <li>Not</li>
+  <li>an</li>
+  <li>expanding</li>
+  <li>list</li>
+</ul>
+
 </body>
+
 </html>
