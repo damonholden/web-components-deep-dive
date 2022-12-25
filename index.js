@@ -21,6 +21,21 @@ class PopUpInfo extends HTMLElement {
     info.setAttribute('class', 'info');
     info.textContent = this.getAttribute('data-text');
 
+    icon.addEventListener('focus', () => {
+      info.classList.add('focus');
+    });
+
+    icon.addEventListener('blur', () => {
+      info.classList.remove('focus');
+    });
+
+    icon.addEventListener('mouseover', () => {
+      info.classList.add('hover');
+    });
+
+    icon.addEventListener('mouseout', () => {
+      info.classList.remove('hover');
+    });
     // The following is an example of internal styling for the shadow dom. Later
     // on, we add more styling with an external style sheet:
     const style = document.createElement('style');
@@ -46,10 +61,12 @@ class PopUpInfo extends HTMLElement {
     img {
       width: 1.2rem;
     }
-    .icon:hover + .info, .icon:focus + .info {
+    .info.focus, .info.hover {
       opacity: 1;
     }
     `;
+
+    // TODO: see if opacity can be done with (.info + ("focus or hover")) selector
 
     // the following is more styling applied with an external styles sheet added
     // with a link element. More on this at:
@@ -169,7 +186,6 @@ class Square extends HTMLElement {
 }
 
 function updateStyle(elem) {
-  'use strict';
   const shadow = elem.shadowRoot;
   shadow.querySelector('style').textContent = `
     div {
@@ -194,7 +210,6 @@ function random(min, max) {
 }
 
 add.onclick = function () {
-  'use strict';
   square = document.createElement('custom-square');
   square.setAttribute('l', 100);
   square.setAttribute('c', 'red');
@@ -206,7 +221,6 @@ add.onclick = function () {
 };
 
 update.onclick = function () {
-  'use strict';
   square.setAttribute('l', random(50, 200));
   square.setAttribute(
     'c',
