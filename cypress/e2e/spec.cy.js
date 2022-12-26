@@ -34,4 +34,22 @@ describe('page', () => {
       });
     });
   });
+
+  it('should correctly display custom built in element section', () => {
+    cy.visit('/');
+    cy.get('#custom-built-in-element-section').within(() => {
+      cy.get('h2').should(
+        'contain',
+        'Custom Built-in Element - expanding-list',
+      );
+      cy.get('[is="expanding-list"]')
+        .should('exist')
+        .and('be.visible')
+        .within(() => {
+          cy.get('span').eq('1').as('secondSpan').should('not.be.visible');
+          cy.get('span:first').click();
+          cy.get('@secondSpan').should('be.visible');
+        });
+    });
+  });
 });
