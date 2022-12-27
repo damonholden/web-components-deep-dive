@@ -1,8 +1,8 @@
-ul {
+[is=expanding-list], [is=expanding-list] ul {
   list-style-type: none;
 }
 
-li::before {
+[is=expanding-list] li::before {
   display:inline-block;
   width: 1rem;
   height: 1rem;
@@ -10,21 +10,21 @@ li::before {
   content:"";
 }
 
-.open::before, .closed::before {
+[is=expanding-list] .open::before, [is=expanding-list] .closed::before {
   background-size: 1rem 1rem;
   position: relative;
   top: 0.25rem;
   opacity: 0.3;
 }
 
-.open::before {
+[is=expanding-list] .open::before {
   background-image: url(img/down.png);
 }
 
-.closed::before {
+[is=expanding-list] .closed::before {
   background-image: url(img/right.png);
 }
 
-.closed .closed::before, .closed .open::before {
+[is=expanding-list] .closed .closed::before, [is=expanding-list] .closed .open::before {
   display: none;
 }

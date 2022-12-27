@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Web Components</title>
+  <script src="./index.js" defer></script>
+</head>
+
+<body>
+  <nav>
+    <ul>
+      <li>
+        <a href="/">
+          <h1>Web Components Deep Dive</h1>
+        </a>
+      </li>
+      <li><a href="/using-custom-elements.html">Using Custom Elements</a></li>
+      <li><a href="/using-shadow-dom.html">Using Shadow Dom</a></li>
+    </ul>
+  </nav>
+  <main>
+    <section id='autonomous-custom-element-section'>
+      <h2>Autonomous Custom Element - <code>popup-info</code>:</h2>
+      <!-- autonomous custom elements are standalone and don't inherit from any built
+in element. As you can see, the following `popup-info` element is defined once
+in index.js and reused multiple times.-->
+      <popup-info img-src="./img/tooltip.png" data-text="An autonomous custom element."></popup-info>
+      <popup-info img-src="./img/tooltip.png" data-text="A second autonomous custom
+element, wow." /></popup-info>
+      <popup-info img-src="./img/tooltip.png" data-text="A third autonomous custom
+element, no extra code needed." /></popup-info>
+    </section id='autonomous-custom-element'>
+    <section id='custom-built-in-element-section'>
+      <h2>Custom Built-in Element - <code>expanding-list</code>:</h2>
+      <!-- The following is the declaration of a custom built-in element that was
+created in index.js. This is achieved by using the `is` attribute, which
+specifies the name of the custom element -->
+      <ul is="expanding-list">
+        <li>UK
+          <ul>
+            <li>Yorkshire
+              <ul>
+                <li>Leeds
+                  <ul>
+                    <li>Train station</li>
+                    <li>Town hall</li>
+                    <li>Headrow</li>
+                  </ul>
+                </li>
+                <li>Bradford</li>
+                <li>Hull</li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li>USA
+          <ul>
+            <li>California
+              <ul>
+                <li>Los Angeles</li>
+                <li>San Francisco</li>
+                <li>Berkeley</li>
+              </ul>
+            </li>
+            <li>Nevada</li>
+            <li>Oregon</li>
+          </ul>
+        </li>
+      </ul>
+
+      <ul>
+        <li>Not</li>
+        <li>an</li>
+        <li>expanding</li>
+        <li>list</li>
+      </ul>
+    </section>
+    <section id="lifecycle-callback-demo-section">
+      <h2>Lifecycle Callbacks Demo</h2>
+      <div>
+        <button class="add">add custom square to Dom</button>
+        <button class="update"> update attributes </button>
+        <button class="remove"> remove custom square from DOM </button>
+      </div>
+      <div class="container"></div>
+      <span class="message"></span>
+    </section>
+  </main>
+</body>
+
+</html>
