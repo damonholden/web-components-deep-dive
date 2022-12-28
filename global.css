@@ -6,4 +6,20 @@ font-family: 'Ubuntu Mono', monospace;
 
 body {
 background-color: #4fff87;
+max-width: 800px;
+margin-left: auto;
+margin-right: auto;
+padding-left: 20px;
+padding-right: 20px;
+}
+
+object {
+  border-radius: 20px;
+}
+
+code.tag::before {
+  content: '<';
+}
+code.tag::after {
+  content: '>';
 }
