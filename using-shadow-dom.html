@@ -59,6 +59,23 @@
         create your own shadow DOMs for them, which can actually be viewed in
         the browser's devtools.</p>
       </section>
+      <section id="basic-usage">
+        <h3>Basic Usage</h3>
+        <p>A shadow root can be attached to any element using the
+          <code>Element.attachShadow()</code> method, which takes a single
+          parameter - an option object which contains one property -
+          <code>mode</code> - with a string value of <code>'open'</code> or <code>'closed'</code>.
+        </p>
+        <p>The <code>open</code> option allows the shadow DOM to be accessible using
+          JavaScript written on the main page.</p>
+        <p>The <code>closed</code> option results in a shadow DOM that cannot be
+          accessed from the outside DOM. This is the case with built in elements
+          like the <code class="tag">video</code> element.</p>
+        <p>
+          <!-- TODO: add examples of open and closed shadow DOMs. -->
+          <!-- TODO: add section on styling a shadow DOM. -->
+
+      </section>
 </body>
 
 </html>
