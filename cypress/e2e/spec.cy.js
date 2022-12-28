@@ -1,13 +1,10 @@
 // / <reference types="cypress" />
 
-describe('page', () => {
-  it('should display h1', () => {
-    cy.visit('/');
-    cy.get('h1').should('have.text', 'Web Components Deep Dive');
-  });
+const url = 'using-custom-elements.html';
 
+describe('page', () => {
   it('should correctly display autonomous custom element section', () => {
-    cy.visit('/');
+    cy.visit(url);
     cy.get('#autonomous-custom-element-section').within(() => {
       cy.get('h2').should('contain', 'Autonomous Custom Element - popup-info');
       cy.get('popup-info').then(($popups) => {
@@ -36,7 +33,7 @@ describe('page', () => {
   });
 
   it('should correctly display custom built in element section', () => {
-    cy.visit('/');
+    cy.visit(url);
     cy.get('#custom-built-in-element-section').within(() => {
       cy.get('h2').should(
         'contain',
@@ -54,7 +51,7 @@ describe('page', () => {
   });
 
   it('should correctly display custom the lifecycle callback demo', () => {
-    cy.visit('/');
+    cy.visit(url);
     cy.get('#lifecycle-callback-demo-section').within(() => {
       const boxProps = {
         width: null,
