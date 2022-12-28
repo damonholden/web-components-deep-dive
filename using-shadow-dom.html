@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Web Components</title>
+  <script src="./components.js" defer></script>
+  <link rel="stylesheet" href="global.css">
+</head>
+
+<body>
+  <page-header></page-header>
+  <main>
+    <section id='intro'>
+      <h2>Using The Shadow DOM</h2>
+      <p>An important part of web components is encapsulation, meaning, being
+        able to keep the structure, style, and behavior hidden and separate from
+        other code on the same page, so that there is no clashing. The Shadow DOM
+        is a key part of this, providing a way to attach a hidden separated DOM to
+        an element.</p>
+    </section>
+    <section id="high-level-view">
+      <h3>High-level View</h3>
+      <p>the Shadow DOM allows hidden DOM trees to be attached to elements in
+        the regular DOM tree. A shadow DOM tree starts with a shadow root, under
+        which you can attach any element in the same way as the normal DOM</p>
+      <object data="./img/shadow-dom-high-level.svg" width="100%"></object>
+      <p>To be clear, there is terminology within the shadow DOM concept to be
+        aware of:</p>
+      <dl>
+        <dt>Shadow host:</dt>
+        <dd>The regular DOM node that the Shadow DOM is attached to.</dd>
+        <dt>Shadow tree:</dt>
+        <dd>The DOM tree inside the Shadow DOM.</dd>
+        <dt>Shadow boundary:</dt>
+        <dd>The place where the Shadow DOM and the regular DOM are separated.</dd>
+        <dt>Shadow root:</dt>
+        <dd>The root node of the Shadow tree.</dd>
+      </dl>
+      <p>You can affect nodes in the shadow DOM in the exact same way as nodes in the
+        regular DOM - for example, appending children, settings attributes,
+        styling individual nodes, or adding a <code class="tag">style</code> element
+        to add styling to the entire tree. The difference is that none of the code
+        inside a shadow DOM can affect anything outside it, creating
+        encapsulation.</p>
+      <!-- TODO: find out if encapsulation works both ways -->
+      <p>Note that the shadow DOM is not a new concept - browsers have used it
+        for a long time to for the inner structure and encapsulation of built-in
+        elements. The <code class="tag">video</code> element with the <code>controls</code>
+        attribute is a good example of
+        this:</p>
+      <video controls width="100%">
+        <source src="./videos/car-forest.mp4" type="video/mp4">
+      </video>
+      <p>With devtools open, all you can see in the DOM is a <code class="tag">video</code>
+        element, but it contains buttons and other controls in it's shadow DOM.
+        The difference in custom elements is that you are allowed to actually
+        create your own shadow DOMs for them, which can actually be viewed in
+        the browser's devtools.</p>
+      </section>
+      <section id="basic-usage">
+        <h3>Basic Usage</h3>
+        <p>A shadow root can be attached to any element using the
+          <code>Element.attachShadow()</code> method, which takes a single
+          parameter - an option object which contains one property -
+          <code>mode</code> - with a string value of <code>'open'</code> or <code>'closed'</code>.
+        </p>
+        <p>The <code>open</code> option allows the shadow DOM to be accessible using
+          JavaScript written on the main page.</p>
+        <p>The <code>closed</code> option results in a shadow DOM that cannot be
+          accessed from the outside DOM. This is the case with built in elements
+          like the <code class="tag">video</code> element.</p>
+        <p>
+          <!-- TODO: add examples of open and closed shadow DOMs. -->
+          <!-- TODO: add section on styling a shadow DOM. -->
+
+      </section>
+</body>
+
+</html>
