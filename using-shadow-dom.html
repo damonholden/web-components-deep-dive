@@ -26,7 +26,39 @@
         the regular DOM tree. A shadow DOM tree starts with a shadow root, under
         which you can attach any element in the same way as the normal DOM</p>
       <object data="./img/shadow-dom-high-level.svg" width="100%"></object>
-    </section>
+      <p>To be clear, there is terminology within the shadow DOM concept to be
+        aware of:</p>
+      <dl>
+        <dt>Shadow host:</dt>
+        <dd>The regular DOM node that the Shadow DOM is attached to.</dd>
+        <dt>Shadow tree:</dt>
+        <dd>The DOM tree inside the Shadow DOM.</dd>
+        <dt>Shadow boundary:</dt>
+        <dd>The place where the Shadow DOM and the regular DOM are separated.</dd>
+        <dt>Shadow root:</dt>
+        <dd>The root node of the Shadow tree.</dd>
+      </dl>
+      <p>You can affect nodes in the shadow DOM in the exact same way as nodes in the
+        regular DOM - for example, appending children, settings attributes,
+        styling individual nodes, or adding a <code class="tag">style</code> element
+        to add styling to the entire tree. The difference is that none of the code
+        inside a shadow DOM can affect anything outside it, creating
+        encapsulation.</p>
+      <!-- TODO: find out if encapsulation works both ways -->
+      <p>Note that the shadow DOM is not a new concept - browsers have used it
+        for a long time to for the inner structure and encapsulation of built-in
+        elements. The <code class="tag">video</code> element with the <code>controls</code>
+        attribute is a good example of
+        this:</p>
+      <video controls width="100%">
+        <source src="./videos/car-forest.mp4" type="video/mp4">
+      </video>
+      <p>With devtools open, all you can see in the DOM is a <code class="tag">video</code>
+        element, but it contains buttons and other controls in it's shadow DOM.
+        The difference in custom elements is that you are allowed to actually
+        create your own shadow DOMs for them, which can actually be viewed in
+        the browser's devtools.</p>
+      </section>
 </body>
 
 </html>
