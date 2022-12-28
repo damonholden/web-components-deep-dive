@@ -2,7 +2,7 @@
 
 const url = 'using-custom-elements.html';
 
-describe('page', () => {
+describe('using-custom-elements page', () => {
   it('should correctly display autonomous custom element section', () => {
     cy.visit(url);
     cy.get('#autonomous-custom-element-section').within(() => {
