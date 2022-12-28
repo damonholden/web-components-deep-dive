@@ -185,6 +185,43 @@ class Square extends HTMLElement {
   }
 }
 
+class Header extends HTMLElement {
+  constructor() {
+    super();
+    const shadow = this.attachShadow({ mode: 'open' });
+    const header = document.createElement('header');
+    const nav = document.createElement('nav');
+    const ul = document.createElement('ul');
+
+    const homeLink = document.createElement('li');
+    const homeLinkA = document.createElement('a');
+    const homeLinkH1 = document.createElement('h1');
+    homeLinkA.href = '/';
+    homeLinkH1.textContent = 'Web Components Deep Dive';
+    homeLinkA.appendChild(homeLinkH1);
+    homeLink.appendChild(homeLinkA);
+    ul.appendChild(homeLink);
+
+    const links = [
+      { text: 'Using Custom Elements', url: '/using-custom-elements.html' },
+      { text: 'Using Shadow Dom', url: '/using-shadow-dom.html' },
+    ];
+
+    for (const link of links) {
+      const li = document.createElement('li');
+      const a = document.createElement('a');
+      a.href = link.url;
+      a.textContent = link.text;
+      li.appendChild(a);
+      ul.appendChild(li);
+    }
+
+    nav.appendChild(ul);
+    header.appendChild(nav);
+    shadow.appendChild(header);
+  }
+}
+
 function updateStyle(elem) {
   const shadow = elem.shadowRoot;
   shadow.querySelector('style').textContent = `
@@ -196,50 +233,10 @@ function updateStyle(elem) {
   `;
 }
 
-const add = document.querySelector('.add');
-const update = document.querySelector('.update');
-const remove = document.querySelector('.remove');
-let square;
-
-update.disabled = true;
-remove.disabled = true;
-
-function random(min, max) {
-  'use strict';
-  return Math.floor(Math.random() * (max - min + 1) + min);
-}
-
-add.onclick = function () {
-  square = document.createElement('custom-square');
-  square.setAttribute('l', 100);
-  square.setAttribute('c', 'red');
-  document.body.querySelector('.container').appendChild(square);
-
-  update.disabled = false;
-  remove.disabled = false;
-  add.disabled = true;
-};
-
-update.onclick = function () {
-  square.setAttribute('l', random(50, 200));
-  square.setAttribute(
-    'c',
-    `rgb(${random(0, 255)}, ${random(0, 255)}, ${random(0, 255)})`,
-  );
-};
-
-remove.onclick = function () {
-  'use strict';
-  document.body.querySelector('.container').removeChild(square);
-
-  update.disabled = true;
-  remove.disabled = true;
-  add.disabled = false;
-};
-
 // The following is the creation of the autonomous custom element that inherit from a basic
 // HTML elements.
 
 customElements.define('popup-info', PopUpInfo);
 customElements.define('expanding-list', ExpandingList, { extends: 'ul' });
 customElements.define('custom-square', Square);
+customElements.define('page-header', Header);
