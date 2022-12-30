@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Web Components</title>
+  <script src="./components.js" defer></script>
+  <link rel="stylesheet" href="global.css">
+</head>
+
+<body>
+  <page-header></page-header>
+  <main>
+    <section id='intro'>
+      <h2>Using Templates and Slots</h2>
+      <p>This page goes over the <code class="tag">template</code> and <code class="tag">slot</code> elements, and how
+        they can be used to create a
+        flexible template that can be used to populate the shadow DOM of a web component.</p>
+    </section>
+    <section id="truth-about-templates">
+      <h3>The truth about templates</h3>
+      <p>When the same markup structure needs to be reused on a web page, it
+        makes sense to use some kind of a template rather than repeating the same
+        code over and over again. While possible before, it has since been made
+        much easier with the introduction of the HTML <code class="tag">template</code> element.This element is not
+        rendered in the DOM, but it can still be accessed using JavaScript. For
+        example, the following paragraph:</p>
+      <template id="basic-paragraph">
+        <p class='template-paragraph'>This paragraph was written with a <code class="tag">template</code> element.</p>
+      </template>
+      <script>
+        const template = document.querySelector('#basic-paragraph');
+        const templateContent = template.content;
+        document.querySelector('#truth-about-templates').appendChild(templateContent);
+      </script>
+      <p>...was written with the following code:</p>
+      <pre><code>
+        <code class="tag">template id="basic-paragraph"</code>
+          <code class="tag">p</code>This paragraph was written with a <code
+          class="tag">template</code> element.<code class="tag">/p</code>
+        <code class="tag">/template</code>
+        <code class="tag">script</code>
+          const template = document.querySelector('#basic-paragraph');
+          const templateContent = template.content;
+          document.querySelector('#truth-about-templates').appendChild(templateContent);
+        <code class="tag">/script</code>
+      </code></pre>
+      <p>While this is a trivial example, you can already see how this could be useful.</p>
+    </section>
+    <section id="templates-with-web-components">
+      <h3>Using Templates With Web Components</h3>
+      <p>Templates are useful on their own, but work even better with web
+        components.Templates can be used as the contents of a web components
+        shadow DOM by cloning their contents. This way of defining a web component
+        is more pleasant as they can be written mainly with HTML. <code class="tag">style</code> elements can also be
+        written inside templates
+        this way as the styling will be encapsulated in the shadow DOM. Its
+        important to note thought that directly appending a templates contents to
+        the DOM will have any containing styles leak out.</p>
+      <p>For example, the following 4 paragraphs were made with a template inside
+        a web component:</p>
+      <template id="my-paragraph">
+        <style>
+          p {
+            color: red;
+            text-transform: uppercase;
+          }
+
+        </style>
+        <p>WOW a web component written with a template.</p>
+      </template>
+      <my-paragraph></my-paragraph>
+      <my-paragraph></my-paragraph>
+      <my-paragraph></my-paragraph>
+      <my-paragraph></my-paragraph>
+    </section>
+    <section id="flexibility-with-slots">
+      <h3>Adding Flexibility With Slots</h3>
+      <p>The problem with the previous example is that it is completely static
+        - there is no way to customise the content of each individual web
+        component. There is a declarative way to achieve this using the <code class="tag">slot</code> element. The
+        following 3 purple boxes are from the
+        same web component, but the contents of each are customised with the <code class="tag">slot</code> element.</p>
+
+      <template id="slot-paragraph">
+        <style>
+          p {
+            border-style: solid;
+            color: purple;
+            text-transform: uppercase;
+            text-decoration: underline;
+          }
+
+        </style>
+        <p>
+          <slot name='text'>Default text</slot>
+        </p>
+      </template>
+      <slot-paragraph>
+        <span slot='text'>Custom text</span>
+      </slot-paragraph>
+      <slot-paragraph>
+        <ul slot='text'>some stuff:
+          <li>thing</li>
+          <li>another thing</li>
+          <li>box</li>
+          <li>shorts</li>
+          <li>dunno</li>
+        </ul>
+      </slot-paragraph>
+      <slot-paragraph></slot-paragraph>
+    </section>
+  </main>
+</body>
+
+</html>
