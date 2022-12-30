@@ -205,6 +205,10 @@ class Header extends HTMLElement {
     const links = [
       { text: 'Using Custom Elements', url: '/using-custom-elements.html' },
       { text: 'Using Shadow Dom', url: '/using-shadow-dom.html' },
+      {
+        text: 'Using Templates and Slots',
+        url: '/using-templates-and-slots.html',
+      },
     ];
 
     for (const link of links) {
@@ -219,6 +223,27 @@ class Header extends HTMLElement {
     nav.appendChild(ul);
     header.appendChild(nav);
     shadow.appendChild(header);
+  }
+}
+
+class MyParagraph extends HTMLElement {
+  constructor() {
+    super();
+    let template = document.querySelector('#my-paragraph');
+    let templateContent = template.content;
+
+    const shadowRoot = this.attachShadow({ mode: 'open' });
+    shadowRoot.appendChild(templateContent.cloneNode(true));
+  }
+}
+class SlotParagraph extends HTMLElement {
+  constructor() {
+    super();
+    let template = document.querySelector('#slot-paragraph');
+    let templateContent = template.content;
+
+    const shadowRoot = this.attachShadow({ mode: 'open' });
+    shadowRoot.appendChild(templateContent.cloneNode(true));
   }
 }
 
@@ -240,3 +265,5 @@ customElements.define('popup-info', PopUpInfo);
 customElements.define('expanding-list', ExpandingList, { extends: 'ul' });
 customElements.define('custom-square', Square);
 customElements.define('page-header', Header);
+customElements.define('my-paragraph', MyParagraph);
+customElements.define('slot-paragraph', SlotParagraph);
